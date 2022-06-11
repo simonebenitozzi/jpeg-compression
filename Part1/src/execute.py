@@ -1,5 +1,4 @@
 import numpy as np
-from numpy.random import rand
 np.set_printoptions(linewidth=200)
 
 import pandas as pd
