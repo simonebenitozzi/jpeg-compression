@@ -1,5 +1,4 @@
 import numpy as np
-np.set_printoptions(linewidth=200)
 
 import pandas as pd
 import time
@@ -15,7 +14,8 @@ def f(x, y):
 
 times_df = pd.DataFrame(columns=["N", "my_dct2", "scipy_dct2", "my_idct2", "scipy_idct2"])
 
-for N in [8, 16, 32, 64, 100, 250, 500, 750, 1000, 1500, 2000, 3000, 4000]:
+for N in [8, 16, 32, 64, 100, 250, 500, 750, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 6000, 7000, 8000, 9000, 10000]:
+    print("current N: ", N)
 
     ### --- DCT 2D --- ###
 
@@ -56,7 +56,8 @@ for N in [8, 16, 32, 64, 100, 250, 500, 750, 1000, 1500, 2000, 3000, 4000]:
 
     ### --- logging --- ###
     times_df.loc[len(times_df)] = [N, my_dct2_time, scipy_dct2_time, my_idct2_time, scipy_idct2_time]
+    times_df.to_csv("data/timestmp.csv", index=False)
 
-
+np.set_printoptions(linewidth=200)
 print(times_df)
 times_df.to_csv("data/times.csv", index=False)
