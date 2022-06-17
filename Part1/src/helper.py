@@ -3,7 +3,7 @@ from matplotlib.pyplot import figure
 import numpy as np
 
 
-def plot(labels, data1, data2, title, x_label, y_label, legend1, legend2, path, log=False):
+def plot(labels, data1, data2, title, x_label, y_label, legend1, legend2, path, log=False, func1=True, func2=True):
     figure(figsize=(20, 6), dpi=80)
     title = title + " " + "(Line Plot)"
 
@@ -11,15 +11,20 @@ def plot(labels, data1, data2, title, x_label, y_label, legend1, legend2, path, 
     plt.plot(labels, data2, label=legend2, linestyle="-")
 
     x = np.linspace(min(labels),max(labels),100)
-    y1 = x**3
-    y2 = (x**2) * np.log2(x)
 
-    coeff = max(y1) / max(data1)
-    y1 = y1 / coeff
-    y2 = y2 / coeff
+    if func1:
+        y1 = x**3
+        coeff1 = max(y1) / max(data1)
+        y1 = y1 / coeff1
 
-    plt.plot(x, y1, 'b', label="x^3", linestyle="--")
-    plt.plot(x, y2, 'r', label="x^2 * log(x)", linestyle="--")
+        plt.plot(x, y1, 'b', label="x^3", linestyle="--")
+    
+    if func2:
+        y2 = (x**2) * np.log2(x)
+        coeff2 = max(y2) / max(data2)
+        y2 = y2 / coeff2
+
+        plt.plot(x, y2, 'r', label="x^2 * log(x)", linestyle="--")
     
     plt.xlabel(x_label, labelpad=15, fontsize=12, color="#333533")
     plt.ylabel(y_label, labelpad=15, fontsize=12, color="#333533")
