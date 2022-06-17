@@ -47,15 +47,17 @@ def main():
     new_partitions = []
     for f in partitions:
         c = dctn(f, norm="ortho")
+        print(c)
 
         for k in range(len(c)):
             for l in range(len(c[k])):
-                if k+l >= d:
+                if k+l+2 >= d:
                     c[k][l] = 0
 
         ff = idctn(c, norm="ortho")
         ff[ff < 0] = 0
         ff[ff > 255] = 255
+
         new_partitions.append(ff.astype(int))
     
     new_img = img_reassemble(new_partitions, F, len(img))
