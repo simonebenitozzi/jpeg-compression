@@ -30,7 +30,7 @@ def img_reassemble(partitions, F, img_len):
 
 
 def main():
-    img = cv2.imread("Part2/imgs/shoe.bmp", 0)
+    img = cv2.imread("Immagini/shoe.bmp", 0)
     cv2.imshow("Original image", img)
 
     # F = int(input("F: "))
