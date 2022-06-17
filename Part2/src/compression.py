@@ -33,14 +33,12 @@ def main():
     img = cv2.imread("Immagini/shoe.bmp", 0)
     cv2.imshow("Original image", img)
 
-    # F = int(input("F: "))
-    F = 50
+    F = int(input("F: "))
     if F <= 0 or F > len(img):
         print("Invalid F input")
         return
 
-    # d = int(input("d: "))
-    d = 90
+    d = int(input("d: "))
     if d < 0 or d > 2*F-2:
         print("Invalid d input")
         return
