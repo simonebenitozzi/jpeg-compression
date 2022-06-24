@@ -8,15 +8,16 @@ from Part2.bin.core.helper import read_img, show_img, img_reassemble, splitting_
 
 
 class Analyze(Thread):
-    def __init__(self, file_path):
+    def __init__(self, file_path, f:int, d:int):
         super().__init__()
         self.__file_path = file_path
+        self.__f = f
+        self.__d = d
 
     def run(self) -> None:
         img = read_img(SHOW=False, FILE_PATH=os.path.join(self.__file_path))
-        f, d = 8, 13
-        matrix_list: list[ndarray] = splitting_img(img, f)
-        c = Compression(matrix_list, d)
+        matrix_list: list[ndarray] = splitting_img(img, self.__f)
+        c = Compression(matrix_list, self.__d)
         matrix_compressed_list = c.start()
-        reassemble = img_reassemble(matrix_compressed_list, f, img.shape[0])
+        reassemble = img_reassemble(matrix_compressed_list, self.__f, img.shape[0])
         show_img(img, reassemble)
