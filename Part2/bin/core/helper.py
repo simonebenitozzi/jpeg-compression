@@ -59,57 +59,48 @@ def splitting_img(img, f) -> list[ndarray]:
     :return:
     """
     x = img.shape[0] // f
-    print(f"Immagine con scarto di {img.shape[0] % f}, divisione: {x}")
     img = img[:f * x, :f * x]
     print(img.shape)
 
     split_idx = [x for x in range(f, img.shape[0], f)]
-    print(f"Original: \n {img} \n")
 
     matrix_list: list[ndarray] = []
 
     hsplit_matrix = numpy.hsplit(img, split_idx)
     for h in hsplit_matrix:
-        print("--------------------------------")
-        print(f"hsplit: \n {h} \n")
         vsplit_matrix = numpy.vsplit(h, split_idx)
         for v in vsplit_matrix:
-            print(f"vsplit: \n {v} \n")
             matrix_list.append(v)
 
     return matrix_list
 
 
-def img_reassemble(compressed_matrix_list, f):
+def img_reassemble(compressed_matrix_list: list[ndarray], f: int, length_matrix: int) -> ndarray:
     """
     reassemble img from jpeg compression
+    :param length_matrix:
     :param compressed_matrix_list:
     :param f:
     :return:
     """
 
     # vertical reassemble
-    v_reassemble = []
+    v_reassemble: list[ndarray] = []
     j = 0
 
-    v_reassemble[j] = compressed_matrix_list[0]
+    v_reassemble.append(compressed_matrix_list[0])
     for i in range(1, len(compressed_matrix_list)):
-        if i % f == 0:
+        if i % (length_matrix // f) == 0:
             j += 1
-            v_reassemble[j] = compressed_matrix_list[i]
+            v_reassemble.append(compressed_matrix_list[i])
             continue
-            
-        v_reassemble[j] = np.vstack((v_reassemble[j], compressed_matrix_list[i]))
 
+        v_reassemble[j] = np.concatenate((v_reassemble[j], compressed_matrix_list[i]), axis=0)
 
     # horizontal reassemble
-    reassemble = v_reassemble[0]
+    reassemble: ndarray = v_reassemble[0]
 
     for i in range(1, len(v_reassemble)):
-        reassemble = np.hstack((v_reassemble, v_reassemble[i]))
+        reassemble = np.concatenate((reassemble, v_reassemble[i]), axis=1)
 
     return reassemble
-
-
-
-    

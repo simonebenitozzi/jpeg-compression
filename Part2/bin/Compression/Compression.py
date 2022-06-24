@@ -15,8 +15,8 @@ class Compression:
         self.__matrix_list = matrix_list
         self.__d = d
 
-    def start(self):
-        compressed_matrix_list = []
+    def start(self) -> list[ndarray]:
+        compressed_matrix_list: list[ndarray] = []
         for matrix in self.__matrix_list:
             c = self.dct2(matrix)
             c = self.remove_frequencies(c)
@@ -26,7 +26,7 @@ class Compression:
 
         return compressed_matrix_list
 
-    def dct2(self, matrix: ndarray):
+    def dct2(self, matrix: ndarray) -> ndarray:
         """
         applicare la DCT2 (della libreria): c = DCT2(f);
 
@@ -35,7 +35,7 @@ class Compression:
         """
         return dctn(matrix, norm='ortho')
 
-    def remove_frequencies(self, c):
+    def remove_frequencies(self, c: ndarray) -> ndarray:
         """
         Eliminare le frequenze clk con k + l ≥ d (sto assumendo che le frequenze partano da 0: se d = 0 le elimino
         tutte, se d = (2F − 2) elimino solo la più alta, cio`e quella con k = F − 1, ‘ = F − 1).
@@ -51,18 +51,18 @@ class Compression:
 
         return c
 
-    def idct2(self, c):
+    def idct2(self, c: ndarray) -> ndarray:
         """
-        applicare la DCT2 inversa all’array c così modificato: ff = IDCT2(c);
+        Applicare la DCT2 inversa all’array c così modificato: ff = IDCT2(c);
         :param c:
         :return:
         """
 
         return idctn(c, norm='ortho')
 
-    def round(self, ff):
+    def round(self, ff: ndarray) -> ndarray:
         """
-        arrotondare ff all’intero pi`u vicino, mettere a zero i valori negativi e a 255
+        Arrotondare ff all’intero pi`u vicino, mettere a zero i valori negativi e a 255
         quelli maggiori di 255 in modo da avere dei valori ammissibili (1 byte);
         :param ff:
         :return:
