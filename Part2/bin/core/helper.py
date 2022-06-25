@@ -50,7 +50,7 @@ def read_from_standard_input():
     """
     f = int(input("Lunghezza dei macro-blocchi:"))
     d = int(input("Un intero compreso tra 0 e (2F − 2)"))
-    while not d > 0 and d < (2 * f - 2):
+    while not (0 < d < (2 * f - 2)):
         d = input("Un intero compreso tra 0 e (2F − 2)")
 
     return f, d
