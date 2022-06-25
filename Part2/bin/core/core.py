@@ -9,7 +9,6 @@ from Part2.bin.core.helper import read_img, img_reassemble, splitting_img, show_
 from Part2.resources.constants import RESOURCES_DIRECTORY
 
 
-
 def main():
     use_thread = False
     # get the path or directory

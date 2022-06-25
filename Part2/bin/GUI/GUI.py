@@ -55,7 +55,7 @@ class GUI(tk.Tk):
                                          message="Insert value inside entry and choose an image!")
             return
 
-        if not (self.__d_entry.get().isnumeric() or self.__d_entry.get().isnumeric()):
+        if not self.__f_entry.get().isnumeric() or not self.__d_entry.get().isnumeric():
             tkinter.messagebox.showerror(title="Value Error!", message="Insert only numbers!")
             return
 
