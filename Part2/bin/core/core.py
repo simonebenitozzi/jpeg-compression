@@ -10,7 +10,7 @@ from Part2.resources.constants import RESOURCES_DIRECTORY
 
 
 def main():
-    use_thread = False
+    use_thread = True
     # get the path or directory
     if use_thread:
         folder_dir = RESOURCES_DIRECTORY

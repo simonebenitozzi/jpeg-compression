@@ -23,6 +23,10 @@ expected_dct_matrix = np.array([[1.11e+03, 4.40e+01, 7.59e+01, -1.38e+02, 3.50e+
                                [7.88e+01, -6.45e+01, 1.18e+02, -1.50e+01, -1.37e+02, -3.06e+01, -1.05e+02, 3.98e+01],
                                [1.97e+01, -7.81e+01, 9.72e-01, -7.23e+01, -2.15e+01, 8.13e+01, 6.37e+01, 5.90e+00]])
 
+
+
+
 print(dct(test_vector, norm="ortho") / expected_dct)  # Expected all ~1
+
 
 print(dctn(test_matrix, norm="ortho") / expected_dct_matrix)

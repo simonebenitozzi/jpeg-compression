@@ -9,7 +9,7 @@ import numpy as np
 from PIL import Image
 from numpy import ndarray
 
-from Part2.bin.core.constants import SHOW, FILE_PATH
+from Part2.bin.core.constants import SHOW, FILE_PATH, NAME
 
 lock = Lock()
 
@@ -119,7 +119,7 @@ def make_img_from_matrix(matrix: ndarray) -> Image:
     return Image.fromarray(matrix.astype(np.uint8))
 
 
-def show_img(m1: Image, m2: Image):
+def show_img(m1: Image, m2: Image, **kwargs):
     with lock:
         fig = plt.figure(figsize=(10, 7))
 
@@ -138,4 +138,10 @@ def show_img(m1: Image, m2: Image):
         plt.imshow(m2, cmap='gray', vmin=0, vmax=255)
         plt.axis('off')
         plt.title("Compressed")
+
+        if NAME in kwargs:
+            name = kwargs[NAME]
+            plt.savefig(name, bbox_inches='tight')
+
+
         plt.show()
