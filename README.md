@@ -64,6 +64,6 @@ This project is licensed under the [MIT License](LICENSE). Feel free to use, mod
 
 ## Contact
 
-If you have any questions, suggestions, or concerns regarding the project, please feel free to contact us at [project@example.com](mailto:project@example.com). We appreciate your feedback!
+If you have any questions, suggestions, or concerns regarding the project, please feel free to contact us at [inbox@simonebenitozzi.com](mailto:inbox@simonebenitozzi.com). We appreciate your feedback!
 
 Enjoy exploring the world of DCT image compression with our project!
